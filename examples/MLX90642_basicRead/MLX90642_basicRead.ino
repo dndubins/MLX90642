@@ -1,4 +1,4 @@
-// MLX90642_basicRead.ino file for the MLX90642.h library, version 1.0.1
+// MLX90642_basicRead.ino file for the MLX90642.h library, v1.0.2
 // Author: D. Dubins
 // Date: 27-Feb-26
 // Last updated: 28-Feb-26
