@@ -81,7 +81,7 @@ float MLX90642::readTa() {  // Read sensor temperature, 3.1.5.2
   return Ta_calc;  // return calculated sensor temperature
 }
 
-// Read temperature data from RAM
+// Read temperature data from RAM.
 void MLX90642::readTempC(float *Tram){
   for (int i = 0; i < NUM_PIXELS; i++) {
     Tram[i] = readAddr_signed(pix_addr(i)) / 50.0f;
@@ -155,6 +155,7 @@ uint16_t MLX90642::pix_addr(uint16_t pxl) {
   if (pxl >= NUM_PIXELS) return 0;  // Error case
   return FRAME_ADDR + pxl*2;
 }
+
 
 
 
