@@ -19,7 +19,7 @@ int portSpeed = 921600;    // COM port baud rate in bps
                            
 final int PIXELS=768;  // number of pixels in the array (needs to be ROWSxCOLS)
 PFont boldFont;        // declare a bold font for the control window header
-PFont smallFont;       // declare small font to display ambient temperature
+PFont smallFont;       // declare small font to display sensor temperature
 
 float fontScale=1.0/displayDensity();   // scaling factor to adjust font sizes for different resolution screens
 
@@ -37,7 +37,7 @@ int margin = 5;           // outer margin
 // value range for colour mapping (adjust to your environment)
 float minTemp = 15;        // cold colour at/below this (default: 15)
 float maxTemp = 30;        // hot colour at/above this (default: 30)
-float Tamb = 0.0;          // to hold ambient temperature
+float Tamb = 0.0;          // to hold sensor temperature
 float Tavg = 0.0;          // to hold average temperature
 float Tmin = 0.0;          // to hold average temperature
 float Tmax = 0.0;          // to hold average temperature
@@ -302,7 +302,7 @@ public class SecondWindow extends PApplet {
     text("Heat Map Image Control", 25, 20);
     textFont(smallFont);         // set bold font
     text("Average:", 25, 138);
-    text("Ambient:", 25, 158);
+    text("Sensor:", 25, 158);
     text("°C", 128, 138);
     text("°C", 128, 158);
     fill(220, 220, 220); // lighter grey
@@ -363,3 +363,4 @@ public class SecondWindow extends PApplet {
     }
   }
 }
+
