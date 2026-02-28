@@ -1,4 +1,4 @@
-// MLX90642.cpp, for MLX90642 Library v 1.0.1
+// MLX90642.cpp, for MLX90642 Library v1.0.2
 // Author: D. Dubins
 // Date: 25-Feb-26
 // Last Updated: 28-Feb-26
@@ -155,6 +155,7 @@ uint16_t MLX90642::pix_addr(uint16_t pxl) {
   if (pxl >= NUM_PIXELS) return 0;  // Error case
   return FRAME_ADDR + pxl*2;
 }
+
 
 
 
