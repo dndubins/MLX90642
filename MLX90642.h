@@ -1,4 +1,4 @@
-// MLX90642.h, for MLX90642 Library v 1.0.1
+// MLX90642.h, for MLX90642 Library v1.0.2
 // Author: D. Dubins
 // Date: 25-Feb-26
 // Last Updated: 28-Feb-26
@@ -44,6 +44,7 @@ class MLX90642 {
 
 
 #endif
+
 
 
 
