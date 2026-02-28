@@ -7,7 +7,7 @@ There is much better code here: https://github.com/melexis/mlx90642-library
 * The example sketch "MLX90642_basicRead.ino" illustrates a simple reading with basic temperature output to the Serial Monitor.
 * The example sketch "MLX90642_processing.ino" formats the output for a processing sketch, to draw a heat map.
 * The example sketch "extras/MLX90642_Heatmap.pde" is a [Processing](https://processing.org/) sketch to make a colour heat map, with a simple control panel.
-* The file "extras/FAB-MLX90641-001-A.1.zip" is a Gerber and Drill file if you would like to print a PCB for the sensor, which will fit the MLX90642.
+* The file "extras/FAB-MLX90641-001-A.1.zip" is a Gerber and Drill file if you would like to print a PCB for the sensor, which will fit the MLX90642. The same footprint and layout for the MLX90641 works for the MLX90642.
   
 **Datasheet:** Melexis. "MLX90642 32x24 InfraRed (IR) Array Datasheet", Doc server Rev 001, Datasheet Rev 003 - 19-Mar-25; DOC#3901090642  
 
@@ -33,7 +33,8 @@ Technical notes:
 
 Acknowledgements: 
 - Thank you to Karel Vanroye at Melexis for introducting me to this sensor.
-- A big thank-you to Howard Qiu for getting me interested in IR cameras. Before Howard, I was not even aware of them.
+- A big thank-you to Howard Qiu for getting me interested in IR sensor arrays!
+
 
 
 
