@@ -11,7 +11,7 @@ There is much better code here: https://github.com/melexis/mlx90642-library
   
 **Datasheet:** Melexis. "MLX90642 32x24 InfraRed (IR) Array Datasheet", Doc server Rev 001, Datasheet Rev 003 - 19-Mar-25; DOC#3901090642  
 
-* For those of you who don't like libraries, I included a library-free version in a self-contained sketch, "MLX90642.ino".
+* For those of you who don't like libraries, I included a library-free version in a self-contained sketch, "MLX90642_standalone.ino".
 
 The functions available in the library include:
 ```
@@ -34,4 +34,5 @@ Technical notes:
 Acknowledgements: 
 - Thank you to Karel Vanroye at Melexis for introducting me to this sensor.
 - A big thank-you to Howard Qiu for getting me interested in IR cameras. Before Howard, I was not even aware of them.
+
 
