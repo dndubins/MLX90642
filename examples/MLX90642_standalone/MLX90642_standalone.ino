@@ -56,7 +56,7 @@ void setup() {
   }
   float Ta = readTa();                 // Read sensor temperature
   Serial.print("Sensor temperature on start: ");
-  Serial.println(Ta, 1);               // This should be close to ambient temperature (8-10degC above ambient)
+  Serial.println(Ta, 1);               // Read the sensor temperature (note: this can be 8-10°C above ambient temperature)
   //To print the full pixel map:
   //printFullPixelMap();
 }
