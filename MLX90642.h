@@ -10,12 +10,15 @@
 // USER CONFIGURATION - Override these in your .ino AFTER #include "MLX90642.h"
 #define MLX90642_ADDR 0x66  // I2C bit address of the MLX90642
 #define NUM_PIXELS 768      // number of pixels
-#define I2C_SPEED 400000    // fast speed is 400 kHz
 #define FRAME_ADDR 0x342C   // Starting address for pixel data in RAM
 #define REFRESH_RATE 4      // Refresh rates (0x11F0 bits 0:2): 2:2Hz,3:4Hz,4:8Hz,5:16Hz, default: 8Hz
 #define POR_DELAY 5000      // 5 second warmup
-#define FRAME_BUFFER_SIZE 6000        // for reading the temperatures and a faster serial print
+#define FRAME_BUFFER_SIZE 6000   // for reading the temperatures and a faster serial print
 
+// MCU Settings
+#define SDA 21 // SDA is GPIO21 for ESP32
+#define SCL 22 // SCL is GPIO22 for ESP32
+#define I2C_SPEED 400000    // fast speed is 400 kHz
 
 class MLX90642 {
   public:
@@ -40,5 +43,6 @@ class MLX90642 {
 
 
 #endif
+
 
 
