@@ -1,4 +1,4 @@
-// MLX90642_basicRead.ino file for the MLX90642.h library, version 1.0.0
+// MLX90642_basicRead.ino file for the MLX90642.h library, version 1.0.1
 // Author: D. Dubins
 // Date: 27-Feb-26
 // Notes: the MLX90642 operating voltage is 3-3.6V (typical: 3.3V).
@@ -27,7 +27,6 @@
 #include <Wire.h>
 #include "MLX90642.h"
 
-//#define HEATMAP					// Uncomment for simple ASCII heatmap output to Serial Monitor instead of temperatures
 #define I2C_SPEED 400000  // Set I2C clock speed (safe speed is 100 kHz, up to 400 kHz possible)
 #define REFRESH_RATE 4    // Refresh rates (0x11F0 bits 0..2): 2:2Hz, 3:4Hz, 4:8Hz, 5:16Hz
 #define POR_DELAY 5000    // 5 second warmup
