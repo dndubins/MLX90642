@@ -43,27 +43,26 @@ MLX90642 myIRcam;         // declare an instance of class MLX90642
 
 void setup() {
   Serial.begin(921600);                // Start the Serial Monitor at 921600 bps
-  Wire.begin(SDA, SCL);                  // SDA, SCL for the ESP32 (SDA: GPIO 21, SDL: GPIO22). Change these to your I2C pins if using a different bus.
-  Wire.setClock(I2C_SPEED);            // set I2C clock speed (slower=more stable)
+  Wire.begin(SDA, SCL);                // SDA, SCL for the ESP32 (SDA: GPIO 21, SDL: GPIO22). Change these to your I2C pins if using a different bus.
+  Wire.setClock(I2C_SPEED);            // Set I2C clock speed (slower=more stable)
   delay(POR_DELAY);                    // Power on reset delay (POR)
   if (myIRcam.setRefreshRate(REFRESH_RATE)) {  // set the page refresh rate (sampling frequency)
     Serial.println("Refresh rate adjusted.");
   } else {
     Serial.println("Error on adjusting refresh rate.");
   }
-  float Ta = myIRcam.readTa();  // should happen inside the loop
-  Serial.print("Ambient temperature on start: ");
-  Serial.println(Ta, 1);  // This should be close to ambient temperature (21°C?)
-                          //To print the full pixel map:
-                          //printFullPixelMap();
+  float Ta = myIRcam.readTa();  // Read sensor temperature
+  Serial.print("Sensor temperature on start: ");
+  Serial.println(Ta, 1);        // This should be close to ambient temperature (+8-10 degC)
 }
 
 void loop() {
   while (!myIRcam.isNewDataAvailable()) {  // wait for new data
-    delay(1);                      // small yield to avoid watchdog reset
+    delay(1);                   // Small yield to avoid watchdog reset
   }
-  float Ta = myIRcam.readTa();  // read the ambient temperature
+  float Ta = myIRcam.readTa();  // Read the sensor temperature
   Serial.print(Ta, 1);
-  myIRcam.readTempC(T_o);   // read one frame of the temperature
-  myIRcam.printFrame(T_o);  // Print out temperature frame to Serial Monitor
+  Serial.print(",");
+  myIRcam.readTempC(T_o);       // Read one frame of the temperature
+  myIRcam.printFrame(T_o);      // Print out temperature frame to Serial Monitor
 }
