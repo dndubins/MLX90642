@@ -1,3 +1,7 @@
+// MLX90642.h, for MLX90642 Library v 1.0.1
+// Author: D. Dubins
+// Date: 25-Feb-26
+
 #ifndef MLX90642_h
 #define MLX90642_h
 
@@ -36,4 +40,5 @@ class MLX90642 {
 
 
 #endif
+
 
