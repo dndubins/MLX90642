@@ -1,6 +1,7 @@
 // MLX90642_basicRead.ino file for the MLX90642.h library, version 1.0.1
 // Author: D. Dubins
 // Date: 27-Feb-26
+// Last updated: 28-Feb-26
 // Notes: the MLX90642 operating voltage is 3-3.6V (typical: 3.3V).
 // Use a logic shifter, or connect to an MCU that operates at 3.3V (e.g. NodeMCU).
 // After the device powers up and sends data, a thermal stabilization time is required
@@ -27,16 +28,22 @@
 #include <Wire.h>
 #include "MLX90642.h"
 
-#define I2C_SPEED 400000  // Set I2C clock speed (safe speed is 100 kHz, up to 400 kHz possible)
+//MLX90642 Settings:
 #define REFRESH_RATE 4    // Refresh rates (0x11F0 bits 0..2): 2:2Hz, 3:4Hz, 4:8Hz, 5:16Hz
 #define POR_DELAY 5000    // 5 second warmup
-float T_o[NUM_PIXELS];    // To hold pixel temperature information
+
+//MCU Settings:
+#define SDA 21 // SDA is GPIO21 for ESP32
+#define SCL 22 // SCL is GPIO22 for ESP32
+#define I2C_SPEED 400000  // Set I2C clock speed (safe speed is 100 kHz, up to 400 kHz possible)
+
+float T_o[NUM_PIXELS];    // To hold pixel temperature data
 
 MLX90642 myIRcam;         // declare an instance of class MLX90642
 
 void setup() {
   Serial.begin(921600);                // Start the Serial Monitor at 921600 bps
-  Wire.begin(21, 22);                  // SDA, SCL for the ESP32 (SDA: GPIO 21, SDL: GPIO22). Change these to your I2C pins if using a different bus.
+  Wire.begin(SDA, SCL);                  // SDA, SCL for the ESP32 (SDA: GPIO 21, SDL: GPIO22). Change these to your I2C pins if using a different bus.
   Wire.setClock(I2C_SPEED);            // set I2C clock speed (slower=more stable)
   delay(POR_DELAY);                    // Power on reset delay (POR)
   if (myIRcam.setRefreshRate(REFRESH_RATE)) {  // set the page refresh rate (sampling frequency)
