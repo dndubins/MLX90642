@@ -54,22 +54,22 @@ void setup() {
   } else {
     Serial.println("Error on adjusting refresh rate.");
   }
-  float Ta = readTa();  // should happen inside the loop
+  float Ta = readTa();                 // Read sensor temperature
   Serial.print("Sensor temperature on start: ");
-  Serial.println(Ta, 1);  // This should be close to ambient temperature (21°C?)
+  Serial.println(Ta, 1);               // This should be close to ambient temperature (8-10degC above ambient)
   //To print the full pixel map:
   //printFullPixelMap();
 }
 
 void loop() {
-  while (!isNewDataAvailable()) {  // wait for new data
-    delay(1);                      // small yield to avoid watchdog reset
+  while (!isNewDataAvailable()) {      // Wait for new data
+    delay(1);                          // Small yield to avoid watchdog reset
   }
 
-  float Ta = readTa();  // read the sensor temperature (note: this can be 8-10°C above ambient temperature)
+  float Ta = readTa();  // Read the sensor temperature (note: this can be 8-10°C above ambient temperature)
   Serial.print(Ta, 1);
-  readTempC(T_o);   // read one frame of the temperature
-  printFrame(T_o);  // Print out temperature frame to Serial Monitor
+  readTempC(T_o);       // Read one frame of the temperature
+  printFrame(T_o);      // Print out temperature frame to Serial Monitor
 }
 
 void readTempC(float *Tram) {
