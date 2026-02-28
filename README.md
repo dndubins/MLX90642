@@ -18,7 +18,7 @@ The functions available in the library include:
   bool isNewDataAvailable(); // Check if new data is available
   uint16_t readAddr_unsigned(const uint16_t readByte); // Read a 16-bit unsigned integer from RAM or EEPROM at the address readByte	
   int16_t readAddr_signed(const uint16_t readByte);	// Read a 16-bit signed integer from RAM or EEPROM at the address readByte:
-  float readTa();  // Read ambient temperature, 3.1.5.2
+  float readTa();  // Read sensor temperature, 3.1.5.2 (note: this can be 8-10°C above ambient temperature)
   void readTempC(float *Tram); // Read temperature data from RAM
   bool writeEEPROM(uint16_t eepromAddr, uint16_t newValue); // Writes new value to a EEPROM address using the MLX90642 configuration command
   bool setRefreshRate(uint8_t rate_hz); // To set the refresh rate
@@ -34,6 +34,7 @@ Technical notes:
 Acknowledgements: 
 - Thank you to Karel Vanroye at Melexis for introducting me to this sensor.
 - A big thank-you to Howard Qiu for getting me interested in IR cameras. Before Howard, I was not even aware of them.
+
 
 
 
