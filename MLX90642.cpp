@@ -112,18 +112,12 @@ bool MLX90642::setRefreshRate(uint8_t rate_hz) {
   if (rate_hz < 2 || rate_hz > 5) return false;       // an invalid option has been selected
   uint16_t ctrl = readAddr_unsigned(0x11F0);  // read current refresh rate control bit
   if (ctrl == 0xFFFF) return false;           // Read failed
-  Serial.print("Current EEPROM word: 0b");
-  Serial.println(ctrl, BIN);
   ctrl &= ~0b00000111;          // Clear bits 0:2
   ctrl |= ((uint16_t)rate_hz);  // Set new value
   if (!MLX90642::writeEEPROM(0x11F0, ctrl)) return false;
   delay(20); // small delay for EEPROM to settle
   uint16_t ctrl2 = readAddr_unsigned(0x11F0);  // read current refresh rate control bit
   if (ctrl2 == 0xFFFF) return false;           // Read failed
-  Serial.print("New EEPROM word: 0x");
-  Serial.println(ctrl2, HEX);
-  Serial.print("New EEPROM word: 0b");
-  Serial.println(ctrl2, BIN);
   return ((ctrl2 & 0x07) == rate_hz);  // Helper for safe write
 }
 
@@ -160,5 +154,6 @@ uint16_t MLX90642::pix_addr(uint16_t pxl) {
   if (pxl >= NUM_PIXELS) return 0;  // Error case
   return FRAME_ADDR + pxl*2;
 }
+
 
 
