@@ -1,4 +1,4 @@
-// MLX90642.ino
+// MLX90642.cpp, for MLX90642 Library v 1.0.1
 // Author: D. Dubins
 // Date: 25-Feb-26
 // Notes: the MLX90642 operating voltage is 3-3.6V (typical: 3.3V).
@@ -154,6 +154,7 @@ uint16_t MLX90642::pix_addr(uint16_t pxl) {
   if (pxl >= NUM_PIXELS) return 0;  // Error case
   return FRAME_ADDR + pxl*2;
 }
+
 
 
 
