@@ -51,7 +51,7 @@ void setup() {
     Serial.println("Error on adjusting refresh rate.");
   }
   float Ta = readTa();  // should happen inside the loop
-  Serial.print("Ambient temperature on start: ");
+  Serial.print("Sensor temperature on start: ");
   Serial.println(Ta, 1);  // This should be close to ambient temperature (21°C?)
   //To print the full pixel map:
   //printFullPixelMap();
@@ -62,7 +62,7 @@ void loop() {
     delay(1);                      // small yield to avoid watchdog reset
   }
 
-  float Ta = readTa();  // read the ambient temperature
+  float Ta = readTa();  // read the sensor temperature
   Serial.print(Ta, 1);
   readTempC(T_o);   // read one frame of the temperature
   printFrame(T_o);  // Print out temperature frame to Serial Monitor
@@ -115,13 +115,16 @@ int16_t readAddr_signed(const uint16_t readByte) {
   return (int16_t)((hi << 8) | lo);  // return combined signed 16 bit integer
 }
 
-float readTa() {  // Read ambient temperature, 3.1.5.2
+// Sensor temperature at address 0x3A2C (at normal operation in open air typically 8-10°C above 
+// ambient temperature) not to be confused with environment temperature (Datasheet 3.1.4.1.4)
+// This is "Tsensor" in the datasheet.
+float readTa() {  // Read sensor temperature, 3.1.5.2
   float Ta_calc = readAddr_signed(0x3A2C) / 100.0f;
 #ifdef DEBUG
   Serial.print("readTa() Ta: ");
   Serial.print(Ta_calc, 2);
   Serial.println(", example value: 33.57");  // second example in 3.1.5.3
-  Serial.println("Finished: read Ta, ambient temperature.");
+  Serial.println("Finished: read Ta, sensor temperature.");
 #endif
   return Ta_calc;  // return calculated ambient temperature
 }
@@ -159,10 +162,10 @@ bool setRefreshRate(uint8_t rate_hz) {
   delay(20); // small delay for EEPROM to settle
   uint16_t ctrl2 = readAddr_unsigned(0x11F0);  // read current refresh rate control bit
   if (ctrl2 == 0xFFFF) return false;           // Read failed
-  Serial.print("New EEPROM word: 0x");
-  Serial.println(ctrl2, HEX);
-  Serial.print("New EEPROM word: 0b");
-  Serial.println(ctrl2, BIN);
+  //Serial.print("New EEPROM word: 0x");
+  //Serial.println(ctrl2, HEX);
+  //Serial.print("New EEPROM word: 0b");
+  //Serial.println(ctrl2, BIN);
   return ((ctrl2 & 0x07) == rate_hz);  // Helper for safe write
 }
 
