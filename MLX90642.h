@@ -22,7 +22,7 @@ class MLX90642 {
     bool isNewDataAvailable(); // Check if new data is available
     uint16_t readAddr_unsigned(const uint16_t readByte); // Read a 16-bit unsigned integer from RAM or EEPROM at the address readByte	
     int16_t readAddr_signed(const uint16_t readByte);	// Read a 16-bit signed integer from RAM or EEPROM at the address readByte:
-    float readTa();  // Read ambient temperature, 3.1.5.2
+    float readTa();  // Read sensor temperature, 3.1.5.2
     void readTempC(float *Tram); // Read temperature data from RAM
     bool writeEEPROM(uint16_t eepromAddr, uint16_t newValue); // Writes new value to a EEPROM address using the MLX90642 configuration command
     bool setRefreshRate(uint8_t rate_hz); // To set the refresh rate
@@ -33,5 +33,6 @@ class MLX90642 {
   private:
     char frameBuffer[FRAME_BUFFER_SIZE];  // ✅ member variable
 };
+
 
 #endif
