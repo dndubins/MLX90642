@@ -62,7 +62,7 @@ void loop() {
     delay(1);                      // small yield to avoid watchdog reset
   }
 
-  float Ta = readTa();  // read the sensor temperature
+  float Ta = readTa();  // read the sensor temperature (note: this can be 8-10°C above ambient temperature)
   Serial.print(Ta, 1);
   readTempC(T_o);   // read one frame of the temperature
   printFrame(T_o);  // Print out temperature frame to Serial Monitor
@@ -102,7 +102,6 @@ uint16_t readAddr_unsigned(const uint16_t readByte) {
 }
 
 // Read a 16-bit signed integer from RAM or EEPROM at the address readByte:
-// ESP32 version:
 int16_t readAddr_signed(const uint16_t readByte) {
   Wire.beginTransmission(MLX90642_ADDR);
   Wire.write(readByte >> 8);    // MSB of VDD_ADDR
