@@ -51,9 +51,9 @@ void setup() {
   } else {
     Serial.println("Error on adjusting refresh rate.");
   }
-  float Ta = myIRcam.readTa();  // Read sensor temperature
+  float Ta = myIRcam.readTa();  // Read the sensor temperature (note: this can be 8-10°C above ambient temperature)
   Serial.print("Sensor temperature on start: ");
-  Serial.println(Ta, 1);        // This should be close to ambient temperature (+8-10 degC)
+  Serial.println(Ta, 1);        // Print sensor temeperature
 }
 
 void loop() {
@@ -61,7 +61,7 @@ void loop() {
     delay(1);                   // Small yield to avoid watchdog reset
   }
   float Ta = myIRcam.readTa();  // Read the sensor temperature
-  Serial.print(Ta, 1);
+  Serial.print(Ta, 1);          // Print the sensor temperature
   myIRcam.readTempC(T_o);       // Read one frame of the temperature
   myIRcam.printFrame(T_o);      // Print out temperature frame to Serial Monitor
 }
