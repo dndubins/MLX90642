@@ -62,7 +62,6 @@ void loop() {
   }
   float Ta = myIRcam.readTa();  // Read the sensor temperature
   Serial.print(Ta, 1);
-  Serial.print(",");
   myIRcam.readTempC(T_o);       // Read one frame of the temperature
   myIRcam.printFrame(T_o);      // Print out temperature frame to Serial Monitor
 }
