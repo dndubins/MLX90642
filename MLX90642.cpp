@@ -66,17 +66,19 @@ int16_t MLX90642::readAddr_signed(const uint16_t readByte) {
   return (int16_t)((hi << 8) | lo); // return combined signed 16 bit integer
 }
 
-float MLX90642::readTa() {  // Read ambient temperature, 3.1.5.2
+// Sensor temperature at address 0x3A2C (at normal operation in open air typically 8-10°C above 
+// ambient temperature) not to be confused with environment temperature (Datasheet 3.1.4.1.4)
+// This is "Tsensor" in the datasheet.
+float MLX90642::readTa() {  // Read sensor temperature, 3.1.5.2
   float Ta_calc = readAddr_signed(0x3A2C) / 100.0f;
 #ifdef DEBUG
   Serial.print("readTa() Ta: ");
   Serial.print(Ta_calc, 2);
   Serial.println(", example value: 33.57");  // second example in 3.1.5.3
-  Serial.println("Finished: read Ta, ambient temperature.");
+  Serial.println("Finished: read Ta, sensor temperature.");
 #endif
-  return Ta_calc;  // return calculated ambient temperature
+  return Ta_calc;  // return calculated sensor temperature
 }
-
 
 // Read temperature data from RAM
 void MLX90642::readTempC(float *Tram){
@@ -158,4 +160,5 @@ uint16_t MLX90642::pix_addr(uint16_t pxl) {
   if (pxl >= NUM_PIXELS) return 0;  // Error case
   return FRAME_ADDR + pxl*2;
 }
+
 
