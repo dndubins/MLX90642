@@ -2,6 +2,7 @@
 // Description: This sketch generates a colour heatmap with small control panel for the MLX90641 16x12 IR sensor.
 // Author: D. Dubins with assitance from Perplexity.AI
 // Date: 25-Feb-26
+// Last Updated: 05-Mar-26
 // Simple 32x24 heat map for MLX90642 serial output
 // Expects lines: Tamb, p0, p1, ... p191 (comma-separated)
 // Match port + baud (921600) to your serial port settings
@@ -16,10 +17,10 @@ import controlP5.*;    // import controlP5 library
 Serial myPort; // for communications port
 int portNum = 2; // index for COM port number - update to open the correct serial port.
 int portSpeed = 921600;    // COM port baud rate in bps
-                           
+
 final int PIXELS=768;  // number of pixels in the array (needs to be ROWSxCOLS)
 PFont boldFont;        // declare a bold font for the control window header
-PFont smallFont;       // declare small font to display sensor temperature
+PFont smallFont;       // declare small font to display ambient temperature
 
 float fontScale=1.0/displayDensity();   // scaling factor to adjust font sizes for different resolution screens
 
@@ -37,7 +38,7 @@ int margin = 5;           // outer margin
 // value range for colour mapping (adjust to your environment)
 float minTemp = 15;        // cold colour at/below this (default: 15)
 float maxTemp = 30;        // hot colour at/above this (default: 30)
-float Tamb = 0.0;          // to hold sensor temperature
+float Tamb = 0.0;          // to hold ambient temperature
 float Tavg = 0.0;          // to hold average temperature
 float Tmin = 0.0;          // to hold average temperature
 float Tmax = 0.0;          // to hold average temperature
@@ -63,14 +64,14 @@ void setup() {
   println("Available Ports:");
   println("----------------");
   int numPorts=Serial.list().length;
-  for(int i=0;i<numPorts;i++){
+  for (int i=0; i<numPorts; i++) {
     String pInfo="["+i+"] "+Serial.list()[i];
-    if(i==portNum){
+    if (i==portNum) {
       pInfo+=" <- PORT SELECTED";
     }
     println(pInfo);
   }
-  if(portNum < 0 || portNum > numPorts){
+  if (portNum < 0 || portNum > numPorts) {
     println("Invalid port number. Exiting sketch.");
     exit(); // leave the sketch
   }
@@ -149,7 +150,15 @@ void draw() {
 
       // Show 1 decimal place; adjust as desired
       if (!hide_vals) {
-        String label = nf(t, 0, 1);
+        String temp1 = nf(t, 0, 1); // e.g. "99.9", "100.0"
+        String label;
+        if (temp1.length() <= 4) {  // up to two digits + decimal + one decimal place
+          label = temp1;            // keep one decimal
+        } else {
+          label = nf(t, 0, 0);      // switch to integer
+          int ti = round(t);        // for 3 digits, drop decimal for display purposes
+          label = nf(ti, 0);
+        }
         text(label, x0 + cellSize / 2.0, y0 + cellSize / 2.0);
       }
     }
@@ -302,7 +311,7 @@ public class SecondWindow extends PApplet {
     text("Heat Map Image Control", 25, 20);
     textFont(smallFont);         // set bold font
     text("Average:", 25, 138);
-    text("Sensor:", 25, 158);
+    text("Ambient:", 25, 158);
     text("°C", 128, 138);
     text("°C", 128, 158);
     fill(220, 220, 220); // lighter grey
@@ -363,4 +372,3 @@ public class SecondWindow extends PApplet {
     }
   }
 }
-
