@@ -32,12 +32,13 @@ boolean haveFrame = false;
 // grid / window settings
 int COLS = 32;
 int ROWS = 24;
-int cellSize = 30;         // pixel size of each cell
-int margin = 5;           // outer margin
+int cellSize = 30;         // pixel size of each cell; change the cell size here.
+int margin = 5;            // outer margin
 
 // value range for colour mapping (adjust to your environment)
 float minTemp = 15;        // cold colour at/below this (default: 15)
 float maxTemp = 30;        // hot colour at/above this (default: 30)
+
 float Tamb = 0.0;          // to hold ambient temperature
 float Tavg = 0.0;          // to hold average temperature
 float Tmin = 0.0;          // to hold average temperature
@@ -372,4 +373,5 @@ public class SecondWindow extends PApplet {
     }
   }
 }
+
 
