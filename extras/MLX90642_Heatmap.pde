@@ -3,7 +3,7 @@
 // Author: D. Dubins with assitance from Perplexity.AI
 // Date: 25-Feb-26
 // Simple 32x24 heat map for MLX90642 serial output
-// Expects lines: Tamb, p0, p1, ... p767 (comma-separated)
+// Expects lines: Tamb, p0, p1, ... p191 (comma-separated)
 // Match port + baud (921600) to your serial port settings
 // Libraries: ControlP5 v 2.2.6, by Andreas Schlegal
 // (tutorial here: https://www.kasperkamperman.com/blog/processing-code/controlp5-library-example1/)
@@ -121,14 +121,13 @@ void draw() {
       // Clamp to [minTemp, maxTemp]
       float tt = constrain(t, minTemp, maxTemp);
       float frac = map(tt, minTemp, maxTemp, 0, 1);
-      float coldfrac=2*frac;
-      float hotfrac=2*(frac-0.5);
-      // Simple blue->red gradient
-      // cold: blue (0,0,255), hot: red (255,0,0)
-
+      float coldfrac=2*frac;   // rescale fraction to cold colours
+      float hotfrac=2*(frac-0.5); // rescale fraction to hot colours
+ 
       //soft red: (238. 105, 112)
       //white: (255,255,255)
       //soft blue: (92, 138, 199)
+
       float r, g, b;
       if (frac>0.5) {
         r = lerp(255, 238, hotfrac);
