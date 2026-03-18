@@ -1,7 +1,7 @@
 // MLX90642.cpp, for MLX90642 Library v1.0.3
 // Author: D. Dubins
 // Date: 25-Feb-26
-// Last Updated: 28-Feb-26
+// Last Updated: 18-Mar-26
 // Notes: the MLX90642 operating voltage is 3-3.6V (typical: 3.3V).
 // Use a logic shifter, or connect to an MCU that operates at 3.3V (e.g. NodeMCU).
 // After the device powers up and sends data, a thermal stabilization time is required
