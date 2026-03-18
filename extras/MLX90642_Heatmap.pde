@@ -32,12 +32,12 @@ boolean haveFrame = false;
 // grid / window settings
 int COLS = 32;
 int ROWS = 24;
-int cellSize = 30;         // pixel size of each cell
-int margin = 5;           // outer margin
+int cellSize = 30;         // pixel size of each cell: use this to adjust window size
+int margin = 5;            // outer margin
 
 // value range for colour mapping (adjust to your environment)
-float minTemp = 20;        // cold colour at/below this (default: 15)
-float maxTemp = 35;        // hot colour at/above this (default: 30)
+float minTemp = 20;        // cold colour at/below this (default: 20)
+float maxTemp = 35;        // hot colour at/above this (default: 35)
 float Tamb = 0.0;          // to hold sensor temperature
 float Tavg = 0.0;          // to hold average temperature
 float Tmin = 0.0;          // to hold average temperature
@@ -158,9 +158,17 @@ void draw() {
         fill(0);
       }
 
-      // Show 1 decimal place; adjust as desired
+      // Adjust significant digits here
       if (!hide_vals) {
-        String label = nf(t, 0, 1);
+        String temp1 = nf(t, 0, 1); // 1 significant digit (e.g. "99.9")
+        String label;
+        if (temp1.length() <= 4) {  // up to twi digits + decimal + one decimal place
+          label = temp1;            // keep the decimal
+        } else {                    // for 3 digits, drop decimal for display purposes
+          label = nf(t, 0, 0);      // switch to integer
+          int ti = round(t);
+          label = nf(ti, 0);
+        }
         text(label, x0 + cellSize / 2.0, y0 + cellSize / 2.0);
       }
     }
