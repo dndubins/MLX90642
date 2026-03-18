@@ -4,7 +4,7 @@
 // Date: 25-Feb-26
 // Last Updated: 18-Mar-26
 // Simple 32x24 heat map for MLX90642 serial output
-// Expects lines: Tamb, p0, p1, ... p191 (comma-separated)
+// Expects lines: Tamb, p0, p1, ... p767 (comma-separated)
 // Match port + baud (921600) to your serial port settings
 // Libraries: ControlP5 v 2.2.6, by Andreas Schlegal
 // (tutorial here: https://www.kasperkamperman.com/blog/processing-code/controlp5-library-example1/)
