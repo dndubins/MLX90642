@@ -39,7 +39,7 @@ class MLX90642 {
     uint16_t pix_addr(uint16_t pxl);  // Lookup specific pixel address
   
   private:
-    char frameBuffer[FRAME_BUFFER_SIZE];  // ✅ member variable
+    char frameBuffer[FRAME_BUFFER_SIZE];  // member variable
 };
 
 
