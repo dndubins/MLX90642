@@ -1,5 +1,5 @@
 // MLX90642_Heatmap.pde
-// Description: This sketch generates a colour heatmap with small control panel for the MLX90641 16x12 IR sensor.
+// Description: This sketch generates a colour heatmap with small control panel for the MLX90642 32x24 IR sensor.
 // Author: D. Dubins with assitance from Perplexity.AI
 // Date: 25-Feb-26
 // Last Updated: 18-Mar-26
